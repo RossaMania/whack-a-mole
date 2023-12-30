@@ -12,15 +12,20 @@ $(".game").on("click", ".mole", hitMole);
 $("#start").click(startGame); // start game by clicking the button with the id of "start". This calls the startGame function.
 
 function hitMole() {
-  $(this).hide().parent().find(".hit").show(); // hide the mole and show the hit.
-  fadeOut(200, function (){
-    $(this).parent().find(".dirt").show();
-  }); // fade out the hit and show the dirt.
-game.score++; // increment the score by 1.
-message(); // call the message function.
+  // hide the mole and show the hit.
+  $(this)
+    .hide()
+    .parent()
+    .find(".hit")
+    .show()
+    .fadeOut(200, function () {
+      $(this).parent().find(".dirt").show();
+    }); // fade out the hit and show the dirt.
+  game.score++; // increment the score by 1.
+  message(); // call the message function.
 }
 
-function message(val){
+function message(){
   let html = `<div>Score: ${game.score}</div><div>Moles Left: ${game.ender}</div>`;
   $(".message").html(html);
 }
@@ -81,8 +86,8 @@ function makeGameBoard() {
     $div = $("<div>"); // create a new div element.
     const temp = `hole${i}`; // create a unique id for each hole.
     $div.addClass("hole").addClass(temp).appendTo(".game"); // add the hole class and the unique id to the div element.
-    $("<div>").addClass("mole").html("🐹").appendTo($div); // add the mole class to the div element.
     $("<div>").addClass("dirt").html("🍂").appendTo($div); // add the dirt class to the div element.
+    $("<div>").addClass("mole").html("🐹").appendTo($div); // add the mole class to the div element.
     $("<div>").addClass("hit").html("☠️").appendTo($div); // add the hit class to the div element.
   }
 }
