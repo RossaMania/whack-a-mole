@@ -1,10 +1,8 @@
-
-
 const game = { score: 0, gameover: true, last: 0, holes: 12, ender: 25 };
 
 makeGameBoard(); // call the makeGameBoard function to create the game board.
 
-// Add clikck method to the game object with the on method.
+// Add click method to the game object with the on method.
 // When the mole is clicked, call the hitMole function.
 // We only want the moles to be clickable.
 $(".game").on("click", ".mole", hitMole);
@@ -25,7 +23,7 @@ function hitMole() {
   message(); // call the message function.
 }
 
-function message(){
+function message() {
   let html = `<div>Score: ${game.score}</div><div>Moles Left: ${game.ender}</div>`;
   $(".message").html(html);
 }
@@ -63,12 +61,12 @@ function randomHole() {
   // generate a random value between 0 and the number of holes on the board.
   const randomVal = Math.floor(Math.random() * game.holes);
 
-  if (randomVal == game.last) {
+  if (randomVal === game.last) {
     // if the random value is the same as the last random value, call the function again.
     // This prevents the mole from appearing in the same hole twice in a row.
     return randomHole();
   }
-  game.last = randomVal; // set the game.last property to the random value for next iteration.
+  game.last = randomVal; // set the game.last property to the random value for the next iteration.
 
   return randomVal; // return the random value.
 }
@@ -83,7 +81,7 @@ function startGame() {
 
 function makeGameBoard() {
   for (let i = 0; i < game.holes; i++) {
-    $div = $("<div>"); // create a new div element.
+    const $div = $("<div>"); // create a new div element.
     const temp = `hole${i}`; // create a unique id for each hole.
     $div.addClass("hole").addClass(temp).appendTo(".game"); // add the hole class and the unique id to the div element.
     $("<div>").addClass("dirt").html("🍂").appendTo($div); // add the dirt class to the div element.
