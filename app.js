@@ -13,25 +13,14 @@ function makeGameBoard() {
   }
 }
 
-// Add click method to the game object with the on method.
-// When the mole is clicked, call the hitMole function.
-// We only want the moles to be clickable.
-$(".game").on("click", ".mole", hitMole);
-
 $("#start").click(startGame); // start game by clicking the button with the id of "start". This calls the startGame function.
 
-function hitMole() {
-  // hide the mole and show the hit.
-  $(this)
-    .hide()
-    .parent()
-    .find(".hit")
-    .show()
-    .fadeOut(200, function () {
-      $(this).parent().find(".dirt").show();
-    }); // fade out the hit and show the dirt.
-  game.score++; // increment the score by 1.
-  message(); // call the message function.
+function startGame() {
+  $("#start").hide(); // hide the start button.
+  game.gameover = false; // set the gameover property to false since the game has started.
+  game.score = 0; // reset the score back to 0.
+  game.ender = 25; // reset the ender back to 25.
+  starter(); // start the process of showing the moles.
 }
 
 function message() {
@@ -59,8 +48,8 @@ function showMole($ele) {
     $ele.find(".mole").show(); // hide the dirt and show the mole.
   });
   setTimeout(() => {
-    $ele.find(".dirt").show();
-    $ele.find(".mole").hide(); // hide the mole and show the dirt.
+    $ele.find(".dirt").show(); // show the dirt.
+    $ele.find(".mole").hide(); // hide the mole.
     $ele.find(".hit").hide(); // hide the hit.
     if (!game.gameover) {
       // if the game is not over, call the starter function again.
@@ -84,11 +73,21 @@ function randomHole() {
   return randomVal; // return the random value.
 }
 
-function startGame() {
-  $("#start").hide(); // hide the start button.
-  game.gameover = false; // set the gameover property to false since the game has started.
-  game.score = 0; // reset the score back to 0.
-  game.ender = 25; // reset the ender back to 25.
-  starter(); // start the process of showing the moles.
-}
+// Add click method to the game object with the on method.
+// When the mole is clicked, call the hitMole function.
+// We only want the moles to be clickable.
+$(".game").on("click", ".mole", hitMole);
 
+function hitMole() {
+  // hide the mole and show the hit.
+  $(this)
+    .hide()
+    .parent()
+    .find(".hit")
+    .show()
+    .fadeOut(200, function () {
+      $(this).parent().find(".dirt").show();
+    }); // fade out the hit and show the dirt.
+  game.score++; // increment the score by 1.
+  message(); // call the message function.
+}
