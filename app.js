@@ -2,6 +2,17 @@ const game = { score: 0, gameover: true, last: 0, holes: 12, ender: 25 };
 
 makeGameBoard(); // call the makeGameBoard function to create the game board.
 
+function makeGameBoard() {
+  for (let i = 0; i < game.holes; i++) {
+    const $div = $("<div>"); // create a new div element.
+    const holeId = `hole${i}`; // create a unique id for each hole.
+    $div.addClass("hole").addClass(holeId).appendTo(".game"); // add the hole class and the unique id to the div element.
+    $("<div>").addClass("dirt").html("🍂").appendTo($div); // add the dirt class to the div element.
+    $("<div>").addClass("mole").html("🐹").appendTo($div); // add the mole class to the div element.
+    $("<div>").addClass("hit").html("☠️").appendTo($div); // add the hit class to the div element.
+  }
+}
+
 // Add click method to the game object with the on method.
 // When the mole is clicked, call the hitMole function.
 // We only want the moles to be clickable.
@@ -24,8 +35,8 @@ function hitMole() {
 }
 
 function message() {
-  let html = `<div>Score: ${game.score}</div><div>Moles Left: ${game.ender}</div>`;
-  $(".message").html(html);
+  let html = `<div>Score: ${game.score}</div><div>Moles Left: ${game.ender}</div>`; // create the html for the message div.
+  $(".message").html(html); // update the message div with the score and moles left.
 }
 
 function starter() {
@@ -41,6 +52,7 @@ function showMole($ele) {
     game.gameover = true; // set the gameover property to true.
     $("#start").show(); // show the start button.
   }
+
   const timer = Math.round(Math.random() * 1000) + 200; // generate a random number between 200 and 1200.
 
   $ele.find(".dirt").hide(0, () => {
@@ -66,6 +78,7 @@ function randomHole() {
     // This prevents the mole from appearing in the same hole twice in a row.
     return randomHole();
   }
+
   game.last = randomVal; // set the game.last property to the random value for the next iteration.
 
   return randomVal; // return the random value.
@@ -79,13 +92,3 @@ function startGame() {
   starter(); // start the process of showing the moles.
 }
 
-function makeGameBoard() {
-  for (let i = 0; i < game.holes; i++) {
-    const $div = $("<div>"); // create a new div element.
-    const temp = `hole${i}`; // create a unique id for each hole.
-    $div.addClass("hole").addClass(temp).appendTo(".game"); // add the hole class and the unique id to the div element.
-    $("<div>").addClass("dirt").html("🍂").appendTo($div); // add the dirt class to the div element.
-    $("<div>").addClass("mole").html("🐹").appendTo($div); // add the mole class to the div element.
-    $("<div>").addClass("hit").html("☠️").appendTo($div); // add the hit class to the div element.
-  }
-}
