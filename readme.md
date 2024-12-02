@@ -12,19 +12,55 @@ Welcome to Whack-A-Mole! This is a simple and fun game where you have to whack t
 - Icons are featured for the mole, dirt, and hits, providing a visual representation of the game elements.
 - A score counter is displayed at the top of the screen to keep track of your progress.
 
+## Run With Docker!
+
+To run the game using Docker:
+
+1. Ensure Docker is installed on your machine. [Get Docker here](https://www.docker.com/).
+
+2. Clone this repository to your local machine:
+   ```
+   git clone https://github.com/RossaMania/whack-a-mole
+   ```
+
+3. Navigate to the project directory:
+
+   ```
+   cd whack-a-mole
+   ```
+
+4. Build the Docker image:
+
+   ```
+   docker build -t ross-whack-a-mole .
+   ```
+
+5. Run the Docker container:
+
+   ```
+   docker run -d -p 8080:80 ross-whack-a-mole
+   ```
+
+6. Open your browser and visit:
+
+   ```
+   http://localhost:8080
+   ```
+Now, you can enjoy Whack-A-Mole powered by Docker!
+
 ## Installation
 
 To run this game locally, follow these steps:
 
 1. Clone this repository to your local machine:
-   ```bash
-   $ git clone <repository_url>
+   ```
+   $ git clone https://github.com/RossaMania/whack-a-mole
    ```
 Then navigate to the project directory:
 
-```bash
-$ cd whack-a-mole
-```
+   ```
+   $ cd whack-a-mole
+   ```
 
 2. Ensure you have a live development server. You can use tools like Live Server in VS Code. If you don't have it installed, you can install it via the VS Code extensions.
 
